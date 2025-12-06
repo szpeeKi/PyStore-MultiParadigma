@@ -2,8 +2,12 @@ from models.Produto import Produto
 from models.ProdutoDigital import ProdutoDigital
 from models.ProdutoFisico import ProdutoFisico
 from models.Carrinho import Carrinho
+from models.Cliente import Cliente
 from models.ItemCarrinho import ItemCarrinho
 from utils.analise_dados import calcular_total_carrinho, mapear_resumo_carrinho, filtrar_itens_caros
+
+
+cliente_atual = Cliente("123.456.789-00", "João da Silva", "(21) 9999-9999", "Rua das Flores, 123")
 
 p1 = ProdutoFisico(codigo=1, descricao="Livro de Python", preco=100.0, quantidadeEstoque=10, peso=0.5, altura=20, largura=15, profundidade=3, frete=20.0)
 p2 = ProdutoDigital(codigo=2, descricao="E-book de Python", preco=50.0, quantidadeEstoque=100, tamanhoArquivoMB=5, formatoArquivo="PDF")
