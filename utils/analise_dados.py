@@ -12,7 +12,6 @@ Conceitos aplicados:
 
 # Funções utilitárias
 from functools import reduce
-import json
 
 def calcular_total_carrinho(carrinho): 
     """

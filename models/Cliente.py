@@ -30,7 +30,7 @@ class Cliente:
         return self._nome
 
     def set_nome(self, nome):
-        """
+        """ 
         Atualiza o nome do cliente.
 
         Args:
