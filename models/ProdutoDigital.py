@@ -9,7 +9,7 @@ class ProdutoDigital(Produto):
     (código, preço, etc.) e adicionando especificidades de arquivos digitais.
     """
 
-    def __init__(self, codigo, descricao, preco, quantidadeEstoque, tamanhoArquivoMB, formatoArquivo):
+    def __init__(self, codigo, descricao, preco, quantidadeEstoque, tamanhoArquivoMB, formatoArquivo, tipo="Digital"):
         """
         Inicializa o produto digital.
 
@@ -19,6 +19,10 @@ class ProdutoDigital(Produto):
         super().__init__(codigo, descricao, preco, quantidadeEstoque)
         self._tamanhoArquivoMB = tamanhoArquivoMB
         self._formatoArquivo = formatoArquivo
+        self.tipo = tipo
+    
+    def to_dict(self):
+        return super().to_dict()
 
     # --- Getters e Setters Específicos ---
 

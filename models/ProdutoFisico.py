@@ -9,7 +9,7 @@ class ProdutoFisico(Produto):
     e custos logísticos (frete).
     """
 
-    def __init__(self, codigo, descricao, preco, quantidadeEstoque, peso, altura, largura, profundidade, frete):
+    def __init__(self, codigo, descricao, preco, quantidadeEstoque, peso, altura, largura, profundidade, frete, tipo="Físico"):
         """
         Inicializa o produto físico.
 
@@ -24,6 +24,10 @@ class ProdutoFisico(Produto):
         self._largura = largura
         self._profundidade = profundidade
         self._frete = frete
+        self._tipo = tipo
+
+    def to_dict(self):
+        return super().to_dict()   
 
     def calcular_valor_final(self, quantidade):
         """

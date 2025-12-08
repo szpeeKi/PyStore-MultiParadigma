@@ -7,7 +7,7 @@ class Produto:
     - ENCAPSULAMENTO: Atributos protegidos acessados via Getters e Setters.
     """
 
-    def __init__(self, codigo, descricao, preco, quantidadeEstoque):
+    def __init__(self, codigo, descricao, preco, quantidadeEstoque,tipo="Geral"):
         """
         Inicializa um produto genérico.
 
@@ -21,6 +21,16 @@ class Produto:
         self._descricao = descricao
         self._preco = preco
         self._quantidadeEstoque = quantidadeEstoque
+        self.tipo = tipo
+
+    def to_dict(self):
+        return {
+            "codigo": self._codigo,
+            "descricao": self._descricao,
+            "preco": self._preco,
+            "quantidadeEstoque": self._quantidadeEstoque,
+            "tipo": self.tipo
+        }
 
     # --- Getters e Setters (Encapsulamento) ---
 
