@@ -1,6 +1,6 @@
 # 🛒 Loja Online: Multi-Paradigma
 
-> Um sistema de e-commerce simulado em Python, demonstrando a aplicação prática de múltiplos paradigmas de programação: **Orientado a Objetos (POO)**, **Funcional** e **Imperativo**, com persistência de dados em JSON.
+> Um sistema de e-commerce simulado em Python, demonstrando a aplicação prática de múltiplos paradigmas de programação: **Orientado a Objetos (POO)**, **Funcional** e **Imperativo**, com salvamento de dados em JSON.
 
 ---
 
