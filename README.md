@@ -1,42 +1,46 @@
 # 🛒 Loja Online: Multi-Paradigma
 
-> Um sistema de e-commerce simulado em Python, demonstrando a aplicação prática de múltiplos paradigmas de programação: Orientado a Objetos (POO), Funcional e Imperativo.
-
-## 📋 Sobre o Projeto
-
-Este projeto tem como objetivo principal servir como um estudo de caso sobre arquitetura de software e aplicação de conceitos avançados de programação. O sistema simula o fluxo de compra de produtos físicos (livros) e digitais (e-books), gerenciando carrinho, cálculo de preços e análise de dados.
-
-### 🎯 Objetivos Educacionais
-O código foi estruturado para exemplificar explicitamente:
-* **POO:** Herança, Polimorfismo, Abstração, Encapsulamento e Composição.
-* **Funcional:** Uso de funções de alta ordem como `map`, `filter` e `reduce` para manipulação de dados.
-* **Imperativo:** Controle de fluxo de execução e estados.
-* **Persistência de Dados:** Leitura e interpretação de arquivos JSON.
+> Um sistema de e-commerce simulado em Python, demonstrando a aplicação prática de múltiplos paradigmas de programação: **Orientado a Objetos (POO)**, **Funcional** e **Imperativo**, além de **Persistência de Dados**.
 
 ---
 
-## 🛠 Tecnologias Utilizadas
+## 📋 Sobre o Projeto
 
-* **Linguagem:** Python 3.10+
-* **Formato de Dados:** JSON
-* **Bibliotecas:** Padrão do Python (`json`, `functools`, etc.)
+Este projeto serve como um estudo de caso sobre arquitetura de software. O sistema simula o fluxo de compra de produtos físicos (livros) e digitais (e-books), gerenciando carrinho, cálculo de preços, análise de dados e carregamento dinâmico de inventário via arquivos.
+
+### 🎯 Objetivos Educacionais
+
+O código exemplifica:
+
+| Paradigma/Conceito | Aplicação no Projeto | Localização |
+| :--- | :--- | :--- |
+| **Orientado a Objetos** | Herança, Polimorfismo, Encapsulamento e Composição. | Pasta `models/` |
+| **Funcional** | Map, Filter, Reduce e Funções Puras. | `utils/analise_dados.py` |
+| **Persistência** | Leitura e interpretação de arquivos JSON (I/O). | `utils/persistencia.py` |
+| **Imperativo** | Controle de fluxo, loops e interação com usuário. | `main.py` |
 
 ---
 
 ## 📂 Estrutura do Projeto
 
+A organização segue o princípio de separação de responsabilidades:
+
 ```text
 /
 ├── files/
-│   ├── models/
-│   │   ├── Carrinho.py       # Gerencia a coleção de itens
-│   │   ├── Cliente.py        # Dados do usuário
-│   │   ├── ItemCarrinho.py   # Composição (Produto + Quantidade)
-│   │   ├── Produto.py        # Classe Abstrata
-│   │   ├── ProdutoDigital.py # Herança (E-book)
-│   │   └── ProdutoFisico.py  # Herança (Livro Físico)
-│   ├── utils/
-│   │   └── analise_dados.py  # Módulo de análise estatística
-│   └── main.py               # Ponto de entrada (Menu e Execução)
-├── products.json             # Base de dados dos produtos
-└── README.md                 # Documentação do projeto
+│   ├── models/                   # --- CAMADA DE DOMÍNIO (POO) ---
+│   │   ├── Carrinho.py           # Agregador de itens
+│   │   ├── Cliente.py            # Dados encapsulados
+│   │   ├── ItemCarrinho.py       # Wrapper (Produto + Quantidade)
+│   │   ├── Produto.py            # Classe Abstrata
+│   │   ├── ProdutoDigital.py     # Subclasse (E-book)
+│   │   └── ProdutoFisico.py      # Subclasse (Livro Físico)
+│   │
+│   ├── utils/                    # --- CAMADA DE UTILITÁRIOS ---
+│   │   ├── analise_dados.py      # Funções de Map/Filter/Reduce
+│   │   └── persistencia.py       # Leitura de dados (JSON)
+│   │
+│   └── main.py                   # --- PONTO DE ENTRADA (Imperativo) ---
+│
+├── products.json                 # Base de dados dos produtos
+└── README.md                     # Documentação
