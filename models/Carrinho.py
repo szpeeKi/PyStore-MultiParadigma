@@ -1,14 +1,36 @@
 class Carrinho:
+    """
+    Gerencia as operações de adição e remoção de produtos no processo de compra.
+    """
+    
     def __init__(self):
-        self.itens = []
+        """Inicializa um novo carrinho com uma lista vazia de itens."""
+        self._itens = []
 
     def adicionar_item(self, item):
-        self.itens.append(item)
+        """
+        Adiciona um item ao carrinho.
+
+        Args:
+            item: O objeto (ItemCarrinho) a ser adicionado.
+        """
+        self._itens.append(item)
 
     def remover_item(self, item):
-        if item in self.itens:
+        """
+        Remove um item do carrinho, se ele existir na lista.
+        
+        Args:
+            item: O objeto a ser removido.
+        """
+        if item in self._itens:
             self.itens.remove(item)
 
     def listar_itens(self):
-        return self.itens
+        """
+        Retorna todos os itens presentes no carrinho.
 
+        Returns:
+            list: Lista contendo os objetos adicionados.
+        """
+        return self._itens
