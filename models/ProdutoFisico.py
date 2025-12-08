@@ -27,7 +27,17 @@ class ProdutoFisico(Produto):
         self._tipo = tipo
 
     def to_dict(self):
-        return super().to_dict()   
+        # Pega os dados básicos da classe pai (Produto)
+        data = super().to_dict()
+        # Adiciona os dados específicos desta classe
+        data.update({
+            "peso": self._peso,
+            "altura": self._altura,
+            "largura": self._largura,
+            "profundidade": self._profundidade,
+            "frete": self._frete
+        })
+        return data  
 
     def calcular_valor_final(self, quantidade):
         """

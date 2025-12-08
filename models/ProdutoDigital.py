@@ -22,8 +22,12 @@ class ProdutoDigital(Produto):
         self.tipo = tipo
     
     def to_dict(self):
-        return super().to_dict()
-
+        data = super().to_dict()
+        data.update({
+            "tamanhoArquivoMB": self._tamanhoArquivoMB,
+            "formatoArquivo": self._formatoArquivo
+        })
+        return data
     # --- Getters e Setters Específicos ---
 
     def getTamanhoArquivoMB(self):

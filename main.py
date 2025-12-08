@@ -21,6 +21,7 @@ from models.Carrinho import Carrinho                  # Objeto que contém outro
 from models.Cliente import Cliente                    # Representação orientada a objetos
 from models.ItemCarrinho import ItemCarrinho          # Composição: Carrinho -> ItemCarrinho
 from utils.analise_dados import calcular_total_carrinho, mapear_resumo_carrinho, filtrar_itens_caros
+from utils.persistencia import salvar_estoque, carregar_estoque
 # As funções acima usam Map, Filter, Reduce (Programação funcional)
 
 # ----------------------------------------------
@@ -33,25 +34,19 @@ cliente_atual = Cliente("123.456.789-00",
                         "(21) 9999-9999", 
                         "Rua das Flores, 123")
 
-# Produto físico — POO com herança
-# Demonstração de Polimorfismo: p1 terá comportamento de frete no cálculo
-p1 = ProdutoFisico(codigo=1, 
-                   descricao="Livro de Python", 
-                   preco=100.0, quantidadeEstoque=10, 
-                   peso=0.5, 
-                   altura=20, 
-                   largura=15, 
-                   profundidade=3, 
-                   frete=20.0)
+# Tenta carregar do JSON
+catalogo_produtos = carregar_estoque()
 
-# Produto digital — POO com herança
-# Demonstração de Polimorfismo: p2 usará o cálculo padrão (sem frete)
-p2 = ProdutoDigital(codigo=2, 
-                    descricao="E-book de Python", 
-                    preco=50.0, 
-                    quantidadeEstoque=100, 
-                    tamanhoArquivoMB=5, 
-                    formatoArquivo="PDF")
+# Se a lista estiver vazia (primeira execução), cria os produtos padrão
+if not catalogo_produtos:
+    p1 = ProdutoFisico(1, "Livro de Python", 100.0, 10, 0.5, 20, 15, 3, 20.0)
+    p2 = ProdutoDigital(2, "E-book de Python", 50.0, 100, 5, "PDF")
+    catalogo_produtos = [p1, p2]
+
+# Helpers para achar o produto na lista (já que agora é uma lista dinâmica)
+def buscar_produto_por_id(id_buscado):
+    # next() é uma função que itera e retorna o primeiro match
+    return next((p for p in catalogo_produtos if p.getCodigo() == id_buscado), None)
 
 # ----------------------------------------------
 # CRIAÇÃO DO CARRINHO — OBJETO QUE AGREGA OUTROS OBJETOS
@@ -80,18 +75,28 @@ while True:
 # ----------------------------------------------
     if opcao == "1":
         qtd = int(input("Quantos livros quer? "))
-        item = ItemCarrinho(p1, qtd) # Criação de objeto ItemCarrinho — POO (Composição)
-        carrinho.adicionar_item(item) # Chamando método de instância — Encapsulamento
-        print("Livro adicionado!")
+        # Busca o produto ID 1 na lista carregada
+        prod = buscar_produto_por_id(1) 
+        if prod:
+            item = ItemCarrinho(prod, qtd)
+            carrinho.adicionar_item(item)
+            print("Livro adicionado!")
+        else:
+            print("Produto não encontrado!")
 
 # ----------------------------------------------
 # OPÇÃO 2 — ADICIONAR PRODUTO DIGITAL
 # ----------------------------------------------
     elif opcao == "2":
         qtd = int(input("Quantos E-books quer? "))
-        item = ItemCarrinho(p2, qtd)
-        carrinho.adicionar_item(item)
-        print("E-book adicionado!")
+        # Busca o produto ID 2 na lista carregada
+        prod = buscar_produto_por_id(2)
+        if prod:
+            item = ItemCarrinho(prod, qtd)
+            carrinho.adicionar_item(item)
+            print("E-book adicionado!")
+        else:
+            print("Produto não encontrado!")
 
 # ----------------------------------------------
 # OPÇÃO 3 — Função MAP (Programação Funcional)
@@ -127,6 +132,9 @@ while True:
 # SAIR — Controle imperativo simples
 # ----------------------------------------------
     elif opcao == "0":
+        # Salva o estado atual do catálogo (caso tenhamos alterado estoque futuramente)
+        salvar_estoque(catalogo_produtos)
+        print("Saindo...")
         break
 
 # ----------------------------------------------
