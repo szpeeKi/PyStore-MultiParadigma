@@ -16,7 +16,7 @@ class Carrinho:
         """
         self._itens.append(item)
 
-    def remover_item(self, item):
+    def limpar_carrinho(self, item):
         """
         Remove um item do carrinho, se ele existir na lista.
         
@@ -24,7 +24,7 @@ class Carrinho:
             item: O objeto a ser removido.
         """
         if item in self._itens:
-            self.itens.remove(item)
+            self._itens.remove(item)
 
     def listar_itens(self):
         """

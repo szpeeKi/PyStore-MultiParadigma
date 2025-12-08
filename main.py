@@ -63,9 +63,10 @@ while True:
     print("\n--- MENU LOJA ---")
     print("1. Adicionar Produto Físico (Livro)")
     print("2. Adicionar Produto Digital (E-book)")
-    print("3. Ver Resumo do Carrinho (Map)")
-    print("4. Ver Itens Caros > R$ 60 (Filter)")
-    print("5. Finalizar Compra/Total (Reduce)")
+    print("3. Limpar Carrinho")
+    print("4. Ver Resumo do Carrinho (Map)")
+    print("5. Ver Itens Caros > R$ 60 (Filter)")
+    print("6. Finalizar Compra/Total (Reduce)")
     print("0. Sair")
     
     opcao = input("Escolha: ")
@@ -98,12 +99,16 @@ while True:
         else:
             print("Produto não encontrado!")
 
+    elif opcao == '3':
+        carrinho.limpar_carrinho(item)
+        print('Carrinho limpo com sucesso!')
+
 # ----------------------------------------------
 # OPÇÃO 3 — Função MAP (Programação Funcional)
 # mapear_resumo_carrinho() aplica uma transformação
 # sobre a lista de itens do carrinho, retornando uma nova lista de strings.
 # ----------------------------------------------
-    elif opcao == "3":
+    elif opcao == "4":
         # Aqui chamamos sua função MAP definida em utils
         resumo = mapear_resumo_carrinho(carrinho)
         for r in resumo:
@@ -114,7 +119,7 @@ while True:
 # filtrar_itens_caros() processa a lista e devolve apenas 
 # os itens que satisfazem a condição (Preço > 60).
 # ----------------------------------------------
-    elif opcao == "4":
+    elif opcao == "5":
         # Aqui chamamos sua função FILTER definida em utils
         caros = filtrar_itens_caros(carrinho, 60.0)
         print(f"Itens acima de R$ 60: {len(caros)}")
@@ -123,7 +128,7 @@ while True:
 # OPÇÃO 5 — Função REDUCE (Programação Funcional)
 # calcular_total_carrinho() reduz a lista de itens a um único valor total (float).
 # ----------------------------------------------
-    elif opcao == "5":
+    elif opcao == "6":
         # Aqui chamamos sua função REDUCE definida em utils
         total = calcular_total_carrinho(carrinho)
         print(f"TOTAL DA COMPRA: R$ {total:.2f}")
