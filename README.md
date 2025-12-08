@@ -1,110 +1,42 @@
-#Título: Loja Online: Multi-Paradigma
-## Descrição do projeto 
-O que faz o app: Compra de Produto Físico (Livro) e Produto Digital (E-book)
-Como foi construído: na plataforma GitHub que é uma plataforma de desenvolvimento baseada na nuvem que usa o sistema de controle de versão Git para hospedar, gerenciar e colaborar em projetos de software, funcionando como um "hub" para desenvolvedores compartilharem código, rastrearem alterações e gerenciarem tarefas. Projeto desenvolvido em Python, demonstrando princípios de multiparadigma, estruturado, funcional e Programação Orientada a Objetos (POO).
-Estrutura do Projeto
-/files/
- ├── models
-	├── _pycache_
-	 Carrinho.py
-	 Cliente.py
-	 ItemCarrinho.py
-	 Produto.py
- ProdutoDigital.py
- ProdutoFisico.py
-  ├── utils
-	├── _pycache_
-	 analise_dadoscpython-311.pyc
-         analise_dados.py
-   main.py
+# 🛒 Loja Online: Multi-Paradigma
 
-├── products.json
- └── README.md   ← este arquivo
-  
-Objetivo do Sistema
-O projeto simula:
-•	Cadastro e carregamento de produtos a partir de arquivo JSON
-•	Carrinho de compras com inclusão/remoção de itens
-•	Classes que utilizam herança, polimorfismo, abstração e encapsulamento
-•	Análise de dados simples com módulo separado (analise_dados.py)
---- MENU LOJA ---
-1. Adicionar Produto Físico (Livro)
-2. Adicionar Produto Digital (E-book)
-3. Ver Resumo do Carrinho (Map)
-4. Ver Itens Caros > R$ 60 (Filter)
-5. Finalizar Compra/Total (Reduce)
-0. Sair
+> Um sistema de e-commerce simulado em Python, demonstrando a aplicação prática de múltiplos paradigmas de programação: Orientado a Objetos (POO), Funcional e Imperativo.
 
-Tecnologias Utilizadas
-Python 3.10+
-JSON
-Conceitos de POO, funcional, imperativo
+## 📋 Sobre o Projeto
 
-Como Executar o Projeto
-1️ - Certifique-se de ter Python instalado
-2 - Execute o programa principal
-3 - Para rodar as análises de dados
+Este projeto tem como objetivo principal servir como um estudo de caso sobre arquitetura de software e aplicação de conceitos avançados de programação. O sistema simula o fluxo de compra de produtos físicos (livros) e digitais (e-books), gerenciando carrinho, cálculo de preços e análise de dados.
 
-Função de Carregamento de Produtos
-O main.py utiliza:
-from utils import carregar_produtos
-produtos = carregar_produtos("products.json")
+### 🎯 Objetivos Educacionais
+O código foi estruturado para exemplificar explicitamente:
+* **POO:** Herança, Polimorfismo, Abstração, Encapsulamento e Composição.
+* **Funcional:** Uso de funções de alta ordem como `map`, `filter` e `reduce` para manipulação de dados.
+* **Imperativo:** Controle de fluxo de execução e estados.
+* **Persistência de Dados:** Leitura e interpretação de arquivos JSON.
 
-Essa função:
-Lê o JSON
-Identifica o tipo (digital/físico)
-Instancia a classe correta
+---
 
-Comentários Paradigmáticos Inseridos no Código
-Todos os arquivos .py possuem comentários como:
-# --- EXEMPLO DE POLIMORFISMO ---
-# Subclasses implementam calcular_preco_final() de formas diferentes
+## 🛠 Tecnologias Utilizadas
 
-# --- ENCAPSULAMENTO ---
-# Uso de propriedades para proteger atributos internos
+* **Linguagem:** Python 3.10+
+* **Formato de Dados:** JSON
+* **Bibliotecas:** Padrão do Python (`json`, `functools`, etc.)
 
-# --- HERANÇA ---
-# ProdutoDigital e ProdutoFisico herdam da classe Produto
+---
 
-# --- COMPOSIÇÃO ---
-# ItemCarrinho contém um Produto dentro dele
+## 📂 Estrutura do Projeto
 
-Diagrama UML
-O projeto inclui as classes:
-•	Produto (abstrata)
-•	ProdutoFisico
-•	ProdutoDigital
-•	Cliente
-•	Carrinho
-•	ItemCarrinho
-
- 
-Descrição textual do UML
-Produto (abstract)
- ├── + nome: str
- ├── + preco: float
- ├── + calcular_preco_final(): float (abstract)
- └── + __str__()
-
-ProdutoFisico : Produto
- ├── + peso: float
- └── + calcular_preco_final()
-
-ProdutoDigital : Produto
- ├── + tamanho_mb: int
- └── + calcular_preco_final()
-
-Cliente
- ├── + nome: str
- └── + email: str
-
-ItemCarrinho
- ├── + produto: Produto
- ├── + quantidade: int
- └── + subtotal(): float
-
-Carrinho
- ├── + itens: list[ItemCarrinho]
- ├── + adicionar_item()
- ├── + remover_item()
- └── + total(): float
+```text
+/
+├── files/
+│   ├── models/
+│   │   ├── Carrinho.py       # Gerencia a coleção de itens
+│   │   ├── Cliente.py        # Dados do usuário
+│   │   ├── ItemCarrinho.py   # Composição (Produto + Quantidade)
+│   │   ├── Produto.py        # Classe Abstrata
+│   │   ├── ProdutoDigital.py # Herança (E-book)
+│   │   └── ProdutoFisico.py  # Herança (Livro Físico)
+│   ├── utils/
+│   │   └── analise_dados.py  # Módulo de análise estatística
+│   └── main.py               # Ponto de entrada (Menu e Execução)
+├── products.json             # Base de dados dos produtos
+└── README.md                 # Documentação do projeto
