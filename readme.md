@@ -97,5 +97,5 @@ python main.py
 0. Sair
 Escolha:
 
-✒️ Autor
+## ✒️ Autor
 Desenvolvido por szpeeKi.
